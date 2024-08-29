@@ -24,11 +24,8 @@ public class TodoController {
     }
 
     @GetMapping("/todos")
-    public ResponseEntity<Page<TodoSimpleResponseDto>> getBoards(
-            @RequestParam(defaultValue = "1", required = false) int page,
-            @RequestParam(defaultValue = "10", required = false) int size
-    ) {
-        return ResponseEntity.ok(TodoService.getTodos(page, size));
+    public ResponseEntity<Page<TodoSimpleResponseDto>> getBoards() {
+        return ResponseEntity.ok(TodoService.getTodos());
     }
 
     @PutMapping("/todos/{todoId}")

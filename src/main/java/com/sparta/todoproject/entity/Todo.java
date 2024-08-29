@@ -1,12 +1,12 @@
 package com.sparta.todoproject.entity;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -20,11 +20,21 @@ public class Todo {
     private String title;
     private String contents;
 
-    public Todo(String title, String username, String contents) {
+
+    @OneToMany(mappedBy = "todo")
+    private List<Comment> comments = new ArrayList<>();
+
+
+    public Todo(String title, String contents) {
         this.title = title;
-        this.username = username;
         this.contents = contents;
     }
 
 
+
+
+    public void update(String title, String contents) {
+        this.title = title;
+        this.contents = contents;
+    }
 }
